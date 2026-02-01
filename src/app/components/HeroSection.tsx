@@ -113,7 +113,7 @@ export default function HeroSection() {
 
     return (
         <section
-            className="fixed inset-0 z-0 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8"
+            className="fixed inset-0 z-0 flex flex-col items-center mt-20 sm:mt-30 md:mt-32 lg:mt-24 xl:mt-25 mb-20 px-4 sm:px-6 lg:px-8"
             style={{
                 pointerEvents: heroOpacity < 0.2 && logosOpacity < 0.2 ? "none" : "auto",
             }}
@@ -148,7 +148,7 @@ export default function HeroSection() {
                 </p>
 
                 {/* Logo Scroller Container */}
-                <div className="relative w-full max-w-[600px] mx-auto overflow-hidden bg-transparent">
+                <div className="relative w-[600px] mx-auto overflow-hidden bg-transparent">
                     {/* Scrolling Logos */}
                     <div
                         className="flex gap-10 sm:gap-14 md:gap-16 items-center py-2"
