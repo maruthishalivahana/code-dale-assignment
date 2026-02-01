@@ -203,61 +203,15 @@ export default function CinematicCanvas() {
 
         const images: HTMLImageElement[] = [];
         let loadedCount = 0;
-        let firstFrameRendered = false;
 
-        const tryRenderFirstFrame = () => {
-            if (firstFrameRendered) return;
-            const canvas = canvasRef.current;
-            if (!canvas || !images[0]?.complete || !images[0]?.naturalWidth) return;
-
-            // Set canvas size first
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-
-            // Render first frame
-            const ctx = canvas.getContext("2d", { alpha: false });
-            if (ctx) {
-                const img = images[0];
-                const canvasWidth = canvas.width;
-                const canvasHeight = canvas.height;
-
-                ctx.fillStyle = "#f2ebe1";
-                ctx.fillRect(0, 0, canvasWidth, canvasHeight);
-
-                const imgRatio = img.naturalWidth / img.naturalHeight;
-                const canvasRatio = canvasWidth / canvasHeight;
-
-                let drawWidth, drawHeight, drawX, drawY;
-                if (imgRatio > canvasRatio) {
-                    drawHeight = canvasHeight;
-                    drawWidth = canvasHeight * imgRatio;
-                    drawX = (canvasWidth - drawWidth) / 2;
-                    drawY = 0;
-                } else {
-                    drawWidth = canvasWidth;
-                    drawHeight = canvasWidth / imgRatio;
-                    drawX = 0;
-                    drawY = (canvasHeight - drawHeight) / 2;
-                }
-
-                ctx.drawImage(img, drawX, drawY, drawWidth, drawHeight);
-                firstFrameRendered = true;
-            }
-        };
-
-        const onLoad = (loadedIndex: number) => {
+        const onLoad = () => {
             loadedCount++;
-
-            // Render first frame immediately when it loads
-            if (loadedIndex === 0) {
-                tryRenderFirstFrame();
-            }
 
             // Mark ready when first few frames are loaded
             if (loadedCount >= 5 && !isReadyRef.current) {
                 isReadyRef.current = true;
                 resizeCanvas();
-                renderFrame(currentFrameRef.current);
+                renderFrame(0);
                 setIsLoading(false);
             }
         };
@@ -265,16 +219,10 @@ export default function CinematicCanvas() {
         // Create Image objects and start loading
         frameSequence.forEach((src, index) => {
             const img = new Image();
-            img.onload = () => onLoad(index);
-            img.onerror = () => onLoad(index);
+            img.onload = onLoad;
+            img.onerror = onLoad;
             img.src = src;
             images[index] = img;
-
-            // Handle already cached images
-            if (img.complete && img.naturalWidth) {
-                // Use setTimeout to ensure this runs after the images array is fully populated
-                setTimeout(() => onLoad(index), 0);
-            }
         });
 
         imagesRef.current = images;
