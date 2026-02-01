@@ -1,6 +1,7 @@
 import Navbar from "./components/Navbar";
 import CinematicCanvas from "./components/CinematicCanvas";
 import HeroSection from "./components/HeroSection";
+import TrustedBySection from "./components/TrustedBySection";
 import ProductShowcase from "./components/ProductShowcase";
 
 export default function Home() {
@@ -20,14 +21,16 @@ export default function Home() {
       {/* Navbar - premium fog-like dissolve (0px → 420px) */}
       <Navbar />
 
-      {/* Hero Section - Combined Hero Content + Logo Scroller */}
-      {/* - Hero text: 0px → 520px */}
-      {/* - Company logos: 180px → 720px */}
+      {/* Hero Section - Hero text only (fixed position, fades on scroll) */}
       <HeroSection />
 
       {/* Scroll spacer - allows full THREE-PHASE animation */}
       {/* Height = animation end (4000px) + viewport buffer for large screens */}
       <div className="h-[5500px] 2xl:h-[6500px]" aria-hidden="true" />
+
+      {/* Trusted By Section - Logo scroller in normal document flow */}
+      {/* Positioned below hero, always in white background area */}
+      <TrustedBySection />
 
       {/* Product Showcase - cinematic zoom-out reveal during Phase 3 */}
       {/* Camera pull-back illusion: scale 1.18→1.0, translateY -60→0 */}
