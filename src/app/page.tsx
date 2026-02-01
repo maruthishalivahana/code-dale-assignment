@@ -1,5 +1,5 @@
 import Navbar from "./components/Navbar";
-import AnimatedBackgroundSequence from "./components/AnimatedBackgroundSequence";
+import CinematicCanvas from "./components/CinematicCanvas";
 import HeroSection from "./components/HeroSection";
 import ProductShowcase from "./components/ProductShowcase";
 
@@ -14,8 +14,8 @@ export default function Home() {
       {/* Phase 3 (1600-4000px): Frames 200-281 - Product zoom-out reveal */}
       {/* ============================================ */}
 
-      {/* Fixed cinematic background with frame sequence */}
-      <AnimatedBackgroundSequence />
+      {/* GPU-optimized canvas background renderer */}
+      <CinematicCanvas />
 
       {/* Navbar - premium fog-like dissolve (0px → 420px) */}
       <Navbar />

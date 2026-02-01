@@ -593,8 +593,8 @@ export default function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
 
                                     {/* Number Badge + Label (vertical stack, aligned right) */}
                                     <div className="flex items-center gap-2 pb-2">
-                                        <div className="w-6 h-6 rounded-full bg-[#c8d5a0] flex items-center justify-center flex-shrink-0">
-                                            <span className="text-xs font-bold text-[#203b14]">{column.id}</span>
+                                        <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 transition-colors duration-200 ${hoveredColumn === column.id ? 'bg-[#203b14]' : 'bg-[#c8d5a0]'}`}>
+                                            <span className={`text-xs font-bold transition-colors duration-200 ${hoveredColumn === column.id ? 'text-white' : 'text-[#203b14]'}`}>{column.id}</span>
                                         </div>
                                         <span className="text-[11px] font-mono uppercase tracking-[0.15em] text-[#203b14]/70">
                                             {column.label}

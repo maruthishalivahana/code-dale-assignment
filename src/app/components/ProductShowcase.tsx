@@ -63,7 +63,7 @@ export default function ProductShowcase() {
 
         // Clear Tailwind classes and set initial GSAP state
         showcaseRef.current.classList.remove('opacity-0', 'translate-y-full', 'pointer-events-none');
-        
+
         // Set initial state (hidden, off-screen at bottom, scaled up)
         gsap.set(showcaseRef.current, {
             yPercent: 100, // Start completely below viewport
@@ -120,15 +120,18 @@ export default function ProductShowcase() {
     return (
         <section
             ref={showcaseRef}
-            className="product-showcase fixed inset-0 z-20 flex items-center justify-center px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 opacity-0 translate-y-full pointer-events-none"
+            className="product-showcase fixed inset-0 z-20 opacity-0 translate-y-full pointer-events-none"
             style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
                 willChange: "opacity, transform",
             }}
         >
             <div
                 ref={containerRef}
-                className="w-full max-w-4xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl mx-auto"
                 style={{
+                    width: "min(90vw, 1200px)",
                     transformOrigin: "center center",
                     willChange: "transform",
                 }}

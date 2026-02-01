@@ -37,8 +37,8 @@ export default function ProductsDropdown({ isOpen, onClose }: ProductsDropdownPr
                                 >
                                     <div className="relative w-40 h-24">
                                         {/* Number badge - positioned top right of decoration area */}
-                                        <div className="absolute -top-2 right-0 w-7 h-7 rounded-full bg-[#c8d5a0] flex items-center justify-center z-10">
-                                            <span className="text-sm font-bold text-[#203b14]">{index + 1}</span>
+                                        <div className={`absolute -top-2 right-0 w-7 h-7 rounded-full flex items-center justify-center z-10 transition-colors duration-200 ${hoveredPillar === item.pillar.id ? 'bg-[#203b14]' : 'bg-[#c8d5a0]'}`}>
+                                            <span className={`text-sm font-bold transition-colors duration-200 ${hoveredPillar === item.pillar.id ? 'text-white' : 'text-[#203b14]'}`}>{index + 1}</span>
                                         </div>
 
                                         {/* Custom circle arrangements per pillar */}
