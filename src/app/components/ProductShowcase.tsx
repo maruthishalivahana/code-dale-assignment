@@ -120,6 +120,9 @@ export default function ProductShowcase() {
             className="product-showcase fixed inset-0 z-20 flex items-center justify-center px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16"
             style={{
                 willChange: "opacity",
+                opacity: 0,
+                transform: "translateY(100%)",
+                pointerEvents: "none",
             }}
         >
             <div

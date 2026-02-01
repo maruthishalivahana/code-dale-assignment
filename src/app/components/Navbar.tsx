@@ -160,26 +160,26 @@ export default function Navbar() {
                     {/* RIGHT - Buttons */}
                     <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3 lg:gap-4 flex-shrink-0">
                         {/* Tablet - Demo Button (shows on sm and md, hides on lg+) */}
-                        <button className="hidden sm:inline-flex lg:hidden cursor-pointer items-center justify-center gap-2 px-4 md:px-5 pr-1.5 md:pr-2 py-1.5 border border-neutral-200 rounded-full bg-white text-[#203b14] transition-colors duration-200 text-xs md:text-sm font-mono whitespace-nowrap">
+                        <button className="hidden sm:inline-flex lg:hidden cursor-pointer items-center justify-center gap-4 px-3 sm:px-3 md:px-4 pr-1 md:pr-1.5 py-1.5 md:py-1.5 border border-slate-200 rounded-full bg-[#fbfcfe] text-[#203b14] transition-colors duration-200 text-[10px] sm:text-xs font-mono whitespace-nowrap">
                             DEMO
-                            <span className="w-6 h-6 md:w-7 md:h-7 rounded-full bg-[#203b14]/40 flex items-center justify-center">
-                                <Play size={10} fill="#203b14" className="text-[#203b14] ml-0.5 md:w-3 md:h-3" />
+                            <span className="w-5 h-5 sm:w-5 sm:h-5 md:w-6 md:h-6 rounded-full bg-[#203b14]/40 flex items-center justify-center">
+                                <Play size={8} fill="#203b14" className="text-[#203b14] ml-0.5" />
                             </span>
                         </button>
 
                         {/* Desktop - Watch Demo Button */}
-                        <button className="hidden cursor-pointer lg:inline-flex items-center justify-center gap-2 pl-5 pr-1.5 py-1 border border-neutral-200 rounded-full bg-white text-[#203b14] transition-colors duration-200 text-sm font-mono whitespace-nowrap">
+                        <button className="hidden cursor-pointer lg:inline-flex items-center justify-center gap-2 pl-5 pr-1.5 py-1 border border-neutral-300 rounded-full bg-[#fbfcfe] text-[#203b14] transition-colors duration-200 text-sm font-mono whitespace-nowrap">
                             WATCH DEMO
                             <span className="w-7 h-7 rounded-full bg-[#203b14]/40 flex items-center justify-center">
                                 <Play size={11} fill="#203b14" className="text-[#203b14] ml-0.5" />
                             </span>
                         </button>
-                        <button className="hidden lg:inline-flex cursor-pointer items-center justify-center gap-3 px-6 py-2 bg-[#526445] text-[#FBFDF6] rounded-full hover:bg-[#5f7350] transition-colors duration-200 text-sm font-mono whitespace-nowrap">
+                        <button className="hidden lg:inline-flex cursor-pointer items-center justify-center gap-3 px-6 py-2 bg-[#242f1d] text-[#FBFDF6] rounded-full hover:bg-[#5f7350] transition-colors duration-200 text-sm font-mono whitespace-nowrap">
                             START FOR FREE
                         </button>
 
                         {/* Mobile & Tablet - Start for Free Button */}
-                        <button className="lg:hidden inline-flex items-center justify-center px-3 sm:px-4 md:px-5 py-1.5 md:py-2 bg-[#526445] text-[#FBFDF6] rounded-full text-[10px] sm:text-xs md:text-sm font-mono whitespace-nowrap">
+                        <button className="lg:hidden inline-flex items-center justify-center px-6 sm:px-4 md:px-6 py-2 md:py-2 bg-[#242f1d] hover:bg-[#5f7350] text-[#FBFDF6] rounded-full cursor-pointer text-[10px] sm:text-xs md:text-sm font-mono whitespace-nowrap">
                             START FOR FREE
                         </button>
 
