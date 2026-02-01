@@ -24,8 +24,8 @@ if (typeof window !== "undefined") {
 
 // Configuration - synced with Phase 3 frame playback
 const CONFIG = {
-    // Phase 3 extended scroll range: 1600px → 4000px (2400px total)
-    ZOOM_START: 1600,
+    // Phase 3 extended scroll range: 800px → 4000px (3200px total)
+    ZOOM_START: 800,
     ZOOM_END: 4000,
 
     // Scale: starts large, shrinks to small centered laptop-like size
@@ -41,6 +41,12 @@ const CONFIG = {
 } as const;
 
 export default function ProductShowcase() {
+    // Always scroll to top on reload to start at navbar
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            window.scrollTo(0, 0);
+        }
+    }, []);
     const [isVisible, setIsVisible] = useState(false);
     const [isPlaying, setIsPlaying] = useState(false);
     const showcaseRef = useRef<HTMLElement>(null);
@@ -99,9 +105,20 @@ export default function ProductShowcase() {
                     scale: SCALE_END,
                     ease: "power2.out",
                 }, 0);
+            // Force ScrollTrigger to update immediately on mount
+            setTimeout(() => {
+                ScrollTrigger.refresh();
+                ScrollTrigger.update();
+            }, 0);
         });
 
-        return () => ctx.revert();
+        // Also refresh on window load (for hard reloads/bookmarks)
+        window.addEventListener('load', ScrollTrigger.refresh);
+
+        return () => {
+            ctx.revert();
+            window.removeEventListener('load', ScrollTrigger.refresh);
+        };
     }, []);
 
     // Preload video based on scroll position
@@ -120,7 +137,7 @@ export default function ProductShowcase() {
     return (
         <section
             ref={showcaseRef}
-            className="product-showcase fixed inset-0 z-20 opacity-0 translate-y-full pointer-events-none"
+            className="product-showcase fixed inset-0 z-20 opacity-0 translate-y-full pointer-events-none pt-16 sm:pt-0"
             style={{
                 display: "flex",
                 alignItems: "center",
@@ -130,14 +147,15 @@ export default function ProductShowcase() {
         >
             <div
                 ref={containerRef}
+                className="w-[100vw] sm:w-[95vw] md:w-[90vw] lg:w-[85vw] xl:w-[80vw] px-2 sm:px-0"
                 style={{
-                    width: "min(90vw, 1200px)",
+                    maxWidth: "1400px",
                     transformOrigin: "center center",
                     willChange: "transform",
                 }}
             >
                 {/* Product Showcase Container */}
-                <div className="relative w-full aspect-video overflow-hidden rounded-2xl bg-black shadow-[0_25px_80px_rgba(0,0,0,0.4)]">
+                <div className="relative w-full h-[200px] sm:h-auto sm:aspect-video overflow-hidden rounded-lg sm:rounded-xl md:rounded-2xl bg-black shadow-[0_15px_50px_rgba(0,0,0,0.3)] sm:shadow-[0_25px_80px_rgba(0,0,0,0.4)]">
                     {/* Video - always visible underneath, controls show when playing */}
                     <video
                         ref={videoRef}

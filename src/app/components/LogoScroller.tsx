@@ -51,7 +51,7 @@ export default function LogoScroller() {
         opacity = Math.max(1 - (scrollY - fadeStart) / fadeRange, 0);
     }
 
-    // Company logos from adaline-ai folder
+    // Company logos from adaline-ai folder - all available SVGs
     const logos = [
         "/adaline-ai/svgexport-10.svg",
         "/adaline-ai/svgexport-11.svg",
@@ -65,6 +65,47 @@ export default function LogoScroller() {
         "/adaline-ai/svgexport-19.svg",
         "/adaline-ai/svgexport-20.svg",
         "/adaline-ai/svgexport-21.svg",
+        "/adaline-ai/svgexport-22.svg",
+        "/adaline-ai/svgexport-23.svg",
+        "/adaline-ai/svgexport-24.svg",
+        "/adaline-ai/svgexport-25.svg",
+        "/adaline-ai/svgexport-26.svg",
+        "/adaline-ai/svgexport-27.svg",
+        "/adaline-ai/svgexport-28.svg",
+        "/adaline-ai/svgexport-29.svg",
+        "/adaline-ai/svgexport-30.svg",
+        "/adaline-ai/svgexport-31.svg",
+        "/adaline-ai/svgexport-32.svg",
+        "/adaline-ai/svgexport-33.svg",
+        "/adaline-ai/svgexport-34.svg",
+        "/adaline-ai/svgexport-35.svg",
+        "/adaline-ai/svgexport-36.svg",
+        "/adaline-ai/svgexport-37.svg",
+        "/adaline-ai/svgexport-38.svg",
+        "/adaline-ai/svgexport-39.svg",
+        "/adaline-ai/svgexport-40.svg",
+        "/adaline-ai/svgexport-41.svg",
+        "/adaline-ai/svgexport-42.svg",
+        "/adaline-ai/svgexport-43.svg",
+        "/adaline-ai/svgexport-44.svg",
+        "/adaline-ai/svgexport-45.svg",
+        "/adaline-ai/svgexport-46.svg",
+        "/adaline-ai/svgexport-47.svg",
+        "/adaline-ai/svgexport-48.svg",
+        "/adaline-ai/svgexport-49.svg",
+        "/adaline-ai/svgexport-50.svg",
+        "/adaline-ai/svgexport-51.svg",
+        "/adaline-ai/svgexport-52.svg",
+        "/adaline-ai/svgexport-53.svg",
+        "/adaline-ai/svgexport-54.svg",
+        "/adaline-ai/svgexport-55.svg",
+        "/adaline-ai/svgexport-56.svg",
+        "/adaline-ai/svgexport-57.svg",
+        "/adaline-ai/svgexport-58.svg",
+        "/adaline-ai/svgexport-59.svg",
+        "/adaline-ai/svgexport-60.svg",
+        "/adaline-ai/svgexport-61.svg",
+        "/adaline-ai/svgexport-62.svg",
     ];
 
     // Duplicate logos array for seamless infinite scroll
@@ -84,9 +125,9 @@ export default function LogoScroller() {
                 Trusted By
             </p>
 
-            <div className="max-w-5xl mx-auto px-6">
+            <div className="w-full px-8 md:px-16 lg:px-24">
                 {/* Logo Scroller Container */}
-                <div className="relative w-full overflow-hidden flex justify-center">
+                <div className="relative w-full overflow-hidden">
                     {/* Left Fog/Smoke Overlay */}
                     <div
                         className="absolute left-0 top-0 bottom-0 w-16 sm:w-24 md:w-32 lg:w-40 z-30 pointer-events-none"
