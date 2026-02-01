@@ -128,10 +128,10 @@ export default function ProductsDropdown({ isOpen, onClose }: ProductsDropdownPr
                                         </h3>
                                         {/* Main heading */}
                                         <p className="text-3xl font-bold leading-tight text-[#203b14] mb-1">
-                                            {item.pillar.subtitle.split(' ').slice(0, -1).join(' ')}
+                                            {item.pillar.subtitle?.split(' ').slice(0, -1).join(' ') ?? ''}
                                         </p>
                                         <p className="text-3xl font-bold leading-tight text-[#203b14]">
-                                            {item.pillar.subtitle.split(' ').slice(-1)}
+                                            {item.pillar.subtitle?.split(' ').slice(-1) ?? ''}
                                         </p>
                                     </div>
 
