@@ -115,8 +115,9 @@ const CONFIG = {
     PRELOAD_INITIAL: 15,
     PRELOAD_AHEAD: 8,
 
-    // Mobile
-    MOBILE_BREAKPOINT: 768,
+    // Mobile breakpoint - only phones use mobile frames
+    // Tablets (768px+) use desktop frames for proper aspect ratio
+    MOBILE_BREAKPOINT: 640,
 } as const;
 
 // Helper: clamp value between min and max

@@ -28,9 +28,9 @@ const CONFIG = {
     ZOOM_START: 1600,
     ZOOM_END: 4000,
 
-    // Scale: starts zoomed in, shrinks to normal centered size
-    SCALE_START: 1.3,
-    SCALE_END: 1.0,
+    // Scale: starts large, shrinks to small centered laptop-like size
+    SCALE_START: 1.8,
+    SCALE_END: 0.5,
 
     // Vertical motion: rises from bottom
     TRANSLATE_START: 200,
@@ -124,14 +124,14 @@ export default function ProductShowcase() {
         >
             <div
                 ref={containerRef}
-                className="w-full max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto"
+                className="w-full max-w-4xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl mx-auto"
                 style={{
                     transformOrigin: "center center",
                     willChange: "transform",
                 }}
             >
                 {/* Product Showcase Container */}
-                <div className="relative w-full aspect-video overflow-hidden rounded-lg bg-black">
+                <div className="relative w-full aspect-video overflow-hidden rounded-2xl bg-black shadow-[0_25px_80px_rgba(0,0,0,0.4)]">
                     {/* Video - always visible underneath, controls show when playing */}
                     <video
                         ref={videoRef}
