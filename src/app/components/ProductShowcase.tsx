@@ -41,6 +41,8 @@ const CONFIG = {
 } as const;
 
 export default function ProductShowcase() {
+    // Handler for ScrollTrigger refresh on window load
+    const handleScrollTriggerRefresh = () => ScrollTrigger.refresh();
     // Always scroll to top on reload to start at navbar
     useEffect(() => {
         if (typeof window !== 'undefined') {
@@ -113,11 +115,11 @@ export default function ProductShowcase() {
         });
 
         // Also refresh on window load (for hard reloads/bookmarks)
-        window.addEventListener('load', ScrollTrigger.refresh);
+        window.addEventListener('load', handleScrollTriggerRefresh);
 
         return () => {
             ctx.revert();
-            window.removeEventListener('load', ScrollTrigger.refresh);
+            window.removeEventListener('load', handleScrollTriggerRefresh);
         };
     }, []);
 
