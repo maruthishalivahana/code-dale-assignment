@@ -113,7 +113,7 @@ export default function HeroSection() {
 
     return (
         <section
-            className="fixed inset-0 z-0 flex flex-col items-center mt-20 sm:mt-30 md:mt-32 lg:mt-24 xl:mt-25 mb-20 px-4 sm:px-6 lg:px-8"
+            className="fixed inset-0 z-0 flex flex-col items-center justify-start pt-20 sm:pt-24 md:pt-28 lg:pt-20 xl:pt-24 px-4 sm:px-6 lg:px-8"
             style={{
                 pointerEvents: heroOpacity < 0.2 && logosOpacity < 0.2 ? "none" : "auto",
             }}
@@ -127,7 +127,7 @@ export default function HeroSection() {
                     willChange: "opacity",
                 }}
             >
-                <h1 className="text-[28px] sm:text-[32px] md:text-[40px] lg:text-[46px] xl:text-[46px] leading-[1.1] font-sans text-[#0a1d08] tracking-tight">
+                <h1 className="text-[28px] sm:text-[32px] md:text-[40px] lg:text-[42px] xl:text-[46px] leading-[1.1] font-sans text-[#0a1d08] tracking-tight">
                     The single platform to <span className="font-sans">iterate</span>,
                     <br className="hidden sm:block" />
                     <span className="font-sans">evaluate</span>, <span className="font-sans">deploy</span>, and <span className="font-sans">monitor</span> AI agents
@@ -136,19 +136,19 @@ export default function HeroSection() {
 
             {/* Trusted By Section with Horizontal Scroll - fades with logo timing, stays fixed */}
             <div
-                className="mt-8 md:mt-10 lg:mt-12 text-center w-full"
+                className="mt-6 md:mt-8 lg:mt-10 text-center w-full"
                 style={{
                     opacity: logosOpacity,
                     pointerEvents: logosOpacity < 0.2 ? "none" : "auto",
                     willChange: "opacity",
                 }}
             >
-                <p className="text-[14px] tracking-[0.1em] font-mono text-[#0a1d08]/50 uppercase mb-4 md:mb-8">
+                <p className="text-[14px] tracking-[0.1em] font-mono text-[#0a1d08]/50 uppercase mb-4 md:mb-6">
                     Trusted by
                 </p>
 
                 {/* Logo Scroller Container */}
-                <div className="relative w-[600px] mx-auto overflow-hidden bg-transparent">
+                <div className="relative w-full max-w-[600px] mx-auto overflow-hidden bg-transparent">
                     {/* Scrolling Logos */}
                     <div
                         className="flex gap-10 sm:gap-14 md:gap-16 items-center py-2"
