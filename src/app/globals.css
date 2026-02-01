@@ -1,0 +1,279 @@
+@import "tailwindcss";
+
+:root {
+  --background: #F2EBE1;
+  /* --foreground: #171717; */
+}
+
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+} */
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Akkurat */
+@font-face {
+  font-family: "Akkurat";
+  src: url("/fonts/akkurat/Akkurat-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* @font-face {
+  font-family: "Akkurat";
+  src: url("/fonts/akkurat/Akkurat-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+} */
+
+@font-face {
+  font-family: "Akkurat";
+  src: url("/fonts/akkurat/Akkurat-Italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Fragment Mono */
+@font-face {
+  font-family: "Fragment Mono";
+  src: url("/fonts/fregmentmono/FragmentMono-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+/* @font-face {
+  font-family: "Fragment Mono";
+  src: url("/fonts/fregmentmono/FragmentMono-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+} */
+@font-face {
+  font-family: "Fragment Mono";
+  src: url("/fonts/fregmentmono/FragmentMono-Italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;   
+  font-display: swap;
+} 
+@theme {
+  --font-sans: "Akkurat", sans-serif;
+  --font-mono: "Fragment Mono", monospace;
+}
+
+/* Custom Animations for Navbar */
+@keyframes dropdown-in {
+  from {
+    opacity: 0;
+    transform: translateY(-15px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes dropdown-out {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.98);
+  }
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes float-vertical {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+}
+
+@keyframes fade-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes circle-pulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.15);
+  }
+}
+
+@keyframes rotate-slow-reverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+.animate-dropdown-in {
+  animation: dropdown-in 350ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-dropdown-out {
+  animation: dropdown-out 250ms ease-in forwards;
+}
+
+.animate-slide-in {
+  animation: slide-in 300ms ease-out;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+.animate-spin-slow-reverse {
+  animation: rotate-slow-reverse 25s linear infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 2s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float-vertical 4s ease-in-out infinite;
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 1.5s ease-in-out infinite;
+}
+
+.animate-fade-slide-in {
+  animation: fade-slide-in 300ms ease-out forwards;
+}
+
+.animate-circle-pulse {
+  animation: circle-pulse 600ms ease-in-out;
+}
+
+/* Stagger delays for product items */
+.stagger-1 { animation-delay: 50ms; }
+.stagger-2 { animation-delay: 100ms; }
+.stagger-3 { animation-delay: 150ms; }
+.stagger-4 { animation-delay: 200ms; }
+.stagger-5 { animation-delay: 250ms; }
+.stagger-6 { animation-delay: 300ms; }
+.stagger-7 { animation-delay: 350ms; }
+.stagger-8 { animation-delay: 400ms; }
+
+/* ========================================
+   Cinematic Background Animation Styles
+   ======================================== */
+
+/* GPU acceleration for background layer */
+.cinematic-bg {
+  will-change: transform, filter, background-image;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+/* Smooth transitions for navbar fade */
+.navbar-fade {
+  will-change: opacity, transform;
+  backface-visibility: hidden;
+}
+
+/* Logo scroller fade optimization */
+.logo-scroller-fade {
+  will-change: opacity;
+}
+
+/* Prevent layout shifts during animation */
+.scroll-lock-during-intro {
+  overflow-anchor: none;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .cinematic-bg {
+    will-change: auto;
+  }
+  
+  .navbar-fade,
+  .logo-scroller-fade {
+    will-change: auto;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
