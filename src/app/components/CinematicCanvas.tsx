@@ -110,6 +110,7 @@ const clamp = (value: number, min: number, max: number): number =>
 export default function CinematicCanvas() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
+    const canvasWrapperRef = useRef<HTMLDivElement>(null);
     const imagesRef = useRef<HTMLImageElement[]>([]);
     const currentFrameRef = useRef(0);
     const isReadyRef = useRef(false);
@@ -394,6 +395,47 @@ export default function CinematicCanvas() {
         return () => ctx.revert();
     }, []);
 
+    // GSAP ScrollTrigger for cinematic canvas exit animation
+    // Border radius, scale shrink, and translateY at the end of scroll
+    useEffect(() => {
+        if (!canvasWrapperRef.current || isReducedMotionRef.current) return;
+
+        const wrapper = canvasWrapperRef.current;
+        const { PHASE3_END } = CONFIG;
+
+        // Animation starts at 90% of PHASE3_END and completes at 100%
+        const animationStart = PHASE3_END * 0.9;
+        const animationEnd = PHASE3_END;
+
+        const ctx = gsap.context(() => {
+            // Cinematic exit: shrink, round corners, slide up
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: document.body,
+                    start: `${animationStart}px top`,
+                    end: `${animationEnd}px top`,
+                    scrub: 0.3,
+                }
+            }).fromTo(wrapper,
+                {
+                    scale: 1,
+                    y: "0%",
+                    borderBottomLeftRadius: 0,
+                    borderBottomRightRadius: 0,
+                },
+                {
+                    scale: 0.97,
+                    y: "-50%",
+                    borderBottomLeftRadius: 32,
+                    borderBottomRightRadius: 32,
+                    ease: "power2.out",
+                }
+            );
+        });
+
+        return () => ctx.revert();
+    }, []);
+
     return (
         <div className="fixed inset-0 -z-10 overflow-hidden" aria-hidden="true">
             {/* Container for GSAP scale transforms */}
@@ -405,18 +447,29 @@ export default function CinematicCanvas() {
                     transformOrigin: "center center",
                 }}
             >
-                {/* Canvas for flicker-free frame rendering */}
-                <canvas
-                    ref={canvasRef}
+                {/* Wrapper for cinematic exit animation (border radius, scale, translateY) */}
+                <div
+                    ref={canvasWrapperRef}
+                    className="absolute inset-0 overflow-hidden"
                     style={{
-                        position: "absolute",
-                        top: 0,
-                        left: 0,
-                        width: "100%",
-                        height: "100%",
-                        display: "block",
+                        willChange: "transform, border-radius",
+                        transformOrigin: "center bottom",
                     }}
-                />
+                >
+                    {/* Canvas for flicker-free frame rendering */}
+                    <canvas
+                        ref={canvasRef}
+                        style={{
+                            position: "absolute",
+                            top: 0,
+                            left: 0,
+                            width: "100%",
+                            height: "100%",
+                            display: "block",
+                            borderRadius: "inherit",
+                        }}
+                    />
+                </div>
             </div>
 
             {/* Loading state */}

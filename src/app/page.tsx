@@ -2,11 +2,10 @@ import Navbar from "./components/Navbar";
 import CinematicCanvas from "./components/CinematicCanvas";
 import HeroSection from "./components/HeroSection";
 import ProductShowcase from "./components/ProductShowcase";
-import LogoScroller from "./components/LogoScroller";
 
 export default function Home() {
   return (
-    <>
+    <div className="bg-[#f2ebe1]">
       {/* ============================================ */}
       {/* CINEMATIC SCROLL-DRIVEN LANDING PAGE */}
       {/* ============================================ */}
@@ -15,24 +14,25 @@ export default function Home() {
       {/* Phase 3 (1600-4000px): Frames 200-281 - Product zoom-out reveal */}
       {/* ============================================ */}
 
-      {/* GPU-optimized canvas background renderer */}
-      <CinematicCanvas />
+      {/* Main scroll container with relative positioning */}
+      <div className="relative z-20 h-[6000px] origin-bottom md:-mb-[50vh]">
+
+        {/* Hero Section - Combined Hero Content + Logo Scroller */}
+        {/* Positioned absolutely to overlay on canvas */}
+        <HeroSection />
+
+        {/* GPU-optimized canvas background renderer */}
+        <div className="pointer-events-none">
+          <CinematicCanvas />
+        </div>
+      </div>
 
       {/* Navbar - premium fog-like dissolve (0px → 420px) */}
       <Navbar />
 
-      {/* Hero Section - Combined Hero Content + Logo Scroller */}
-      {/* - Hero text: 0px → 520px */}
-      {/* - Company logos: 180px → 720px */}
-      <HeroSection />
-
-      {/* Scroll spacer - allows full THREE-PHASE animation */}
-      {/* Height = animation end (4000px) + viewport buffer for large screens */}
-      <div className="h-[5500px] 2xl:h-[6500px]" aria-hidden="true" />
-
       {/* Product Showcase - cinematic zoom-out reveal during Phase 3 */}
       {/* Camera pull-back illusion: scale 1.18→1.0, translateY -60→0 */}
       <ProductShowcase />
-    </>
+    </div>
   );
 }
