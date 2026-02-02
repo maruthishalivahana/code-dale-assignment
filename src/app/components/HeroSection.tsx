@@ -98,10 +98,15 @@ export default function HeroSection() {
                     <span className="font-sans">evaluate</span>, <span className="font-sans">deploy</span>, and <span className="font-sans">monitor</span> AI agents
                 </h1>
             </div>
-            <p className="text-[14px] tracking-[0.1em] font-mono text-[#0a1d08]/50 uppercase mt-4 ">Trusted by</p>
+            <p 
+                className="text-[14px] tracking-[0.1em] font-mono text-[#0a1d08]/50 uppercase mt-4"
+                style={{
+                    opacity: heroOpacity,
+                    willChange: "opacity",
+                }}
+            >Trusted by</p>
             {/* Logo Scroller with GSAP depth animation */}
             <div
-
                 className="w-full mt-[-15px]"
                 style={{
                     opacity: heroOpacity,
