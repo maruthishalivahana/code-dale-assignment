@@ -2,6 +2,7 @@ import Navbar from "./components/Navbar";
 import CinematicCanvas from "./components/CinematicCanvas";
 import HeroSection from "./components/HeroSection";
 import ProductShowcase from "./components/ProductShowcase";
+import LogoScroller from "./components/LogoScroller";
 
 export default function Home() {
   return (

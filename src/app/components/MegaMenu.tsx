@@ -548,9 +548,9 @@ export default function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
             style={{
                 opacity: isOpen ? 1 : 0,
                 transform: isOpen
-                    ? 'translateY(0) scale(1)'
-                    : 'translateY(-8px) scale(0.98)',
-                transition: 'opacity 220ms cubic-bezier(0.22, 1, 0.36, 1), transform 220ms cubic-bezier(0.22, 1, 0.36, 1)',
+                    ? 'translateY(0)'
+                    : 'translateY(-20px)',
+                transition: 'opacity 300ms cubic-bezier(0.22, 1, 0.36, 1), transform 350ms cubic-bezier(0.22, 1, 0.36, 1)',
                 pointerEvents: isOpen ? 'auto' : 'none',
             }}
         >
@@ -578,8 +578,8 @@ export default function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                                                 ? 1
                                                 : 0.25
                                         : 0,
-                                    transform: isOpen ? 'translateY(0)' : 'translateY(12px)',
-                                    transition: `opacity 400ms ease, transform 280ms cubic-bezier(0.22, 1, 0.36, 1) ${columnIndex * 50}ms`,
+                                    transform: isOpen ? 'translateY(0)' : 'translateY(-30px)',
+                                    transition: `opacity 400ms ease ${columnIndex * 80 + 100}ms, transform 450ms cubic-bezier(0.22, 1, 0.36, 1) ${columnIndex * 80 + 100}ms`,
                                 }}
                             >
                                 {/* Graphics with Number Badge and Label aligned to right */}
@@ -625,7 +625,8 @@ export default function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                                                 ? 1
                                                 : 0.25
                                         : 0,
-                                    transition: `opacity 400ms ease`,
+                                    transform: isOpen ? 'translateY(0)' : 'translateY(-25px)',
+                                    transition: `opacity 400ms ease ${columnIndex * 80 + 200}ms, transform 450ms cubic-bezier(0.22, 1, 0.36, 1) ${columnIndex * 80 + 200}ms`,
                                 }}
                             >
                                 {/* Label */}

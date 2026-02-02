@@ -301,3 +301,127 @@ body {
     transform: none !important;
   }
 }
+
+/* ============================================
+   LOGO SCROLLER - ADALINE STYLE WITH GSAP
+   Premium depth effect: logos scale, fade & dim
+   based on distance from viewport center
+   ============================================ */
+
+.logo-scroller {
+  position: relative;
+  padding: 2rem 0;
+  background: transparent;
+  max-width: 600px;
+  margin: 0 auto;
+  /* NO overflow:hidden here - let scaled logos breathe */
+}
+
+/* Fade overlays - absolute positioned, don't clip content */
+.logo-scroller__fade {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.logo-scroller__fade--left {
+  left: 0;
+  background: transparent;
+}
+
+.logo-scroller__fade--right {
+  right: 0;
+  background: transparent;
+}
+
+/* Track wrapper - clips horizontal overflow only */
+.logo-scroller__track-wrapper {
+  /* overflow-x: clip;
+  overflow-y: visible; */
+  padding: 20px 0; /* Vertical padding for scaled logos */
+}
+
+.logo-scroller__track {
+  display: flex;
+  gap: 80px;
+  width: max-content;
+  will-change: transform;
+  overflow: visible;
+}
+
+/* GPU-accelerated logo items with NO clipping */
+.logo-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: visible;
+  
+  /* GPU compositing layer */
+  will-change: transform, opacity, filter;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  
+  /* No CSS transitions - GSAP controls everything */
+  transition: none;
+}
+
+.logo-item img,
+.logo-item svg {
+  height: 28px;
+  width: auto;
+  pointer-events: none;
+  user-select: none;
+  overflow: visible;
+  
+  /* Green color filter - matching #0a1d08 dark green */
+  filter: brightness(0) saturate(100%) invert(8%) sepia(20%) saturate(2000%) hue-rotate(70deg) brightness(95%) contrast(95%);
+  
+  /* Prevent subpixel jitter during scaling */
+  transform-origin: center center;
+  image-rendering: optimizeQuality;
+  shape-rendering: geometricPrecision;
+  
+  /* No transitions - GSAP only */
+  transition: none;
+}
+
+/* ============================================
+   LOGO SCROLLER - RESPONSIVE
+   ============================================ */
+
+@media (max-width: 1024px) {
+  .logo-scroller__track {
+    gap: 50px;
+  }
+  .logo-scroller__fade {
+    width: 80px;
+  }
+  .logo-item img,
+  .logo-item svg {
+    height: 24px;
+  }
+}
+
+@media (max-width: 640px) {
+  .logo-scroller {
+    padding: 1.5rem 0;
+  }
+  .logo-scroller__track-wrapper {
+    padding: 10px 0;
+  }
+  .logo-scroller__track {
+    gap: 32px;
+  }
+  .logo-scroller__fade {
+    width: 50px;
+  }
+  .logo-item img,
+  .logo-item svg {
+    height: 20px;
+  }
+}
