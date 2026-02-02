@@ -11,7 +11,6 @@ export default function ProductIcon({ type, className = "" }: ProductIconProps) 
     const baseClasses = "w-10 h-10 flex-shrink-0"
 
     const icons: Record<string, ReactElement> = {
-        // Pillars
         iterate: (
             <div className={`${baseClasses} ${className}`}>
                 <svg viewBox="0 0 40 40" className="w-full h-full text-blue-600">
@@ -87,7 +86,6 @@ export default function ProductIcon({ type, className = "" }: ProductIconProps) 
             </div>
         ),
 
-        // Specific Products
         editor: (
             <div className={`${baseClasses} ${className}`}>
                 <svg viewBox="0 0 40 40" className="w-full h-full text-indigo-600">

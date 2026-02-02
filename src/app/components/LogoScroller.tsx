@@ -8,7 +8,7 @@ export default function LogoScroller() {
     const logoRefs = useRef<HTMLDivElement[]>([]);
 
     const logos = [
-        "/adaline-ai/svgexport-10.svg",
+        "/adaline-ai/svgexport-50.svg",
         "/adaline-ai/svgexport-11.svg",
         "/adaline-ai/svgexport-12.svg",
         "/adaline-ai/svgexport-13.svg",
@@ -20,15 +20,26 @@ export default function LogoScroller() {
         "/adaline-ai/svgexport-19.svg",
         "/adaline-ai/svgexport-20.svg",
         "/adaline-ai/svgexport-21.svg",
+        "/adaline-ai/svgexport-51.svg",
+        "/adaline-ai/svgexport-52.svg",
+        "/adaline-ai/svgexport-53.svg",
+        "/adaline-ai/svgexport-54.svg",
+        "/adaline-ai/svgexport-55.svg",
+        "/adaline-ai/svgexport-56.svg",
+        "/adaline-ai/svgexport-57.svg",
+        "/adaline-ai/svgexport-58.svg",
+        "/adaline-ai/svgexport-59.svg",
+        "/adaline-ai/svgexport-60.svg",
+        "/adaline-ai/svgexport-61.svg",
+
     ];
 
-    const allLogos = [...logos, ...logos]; // duplicate for seamless loop
+    const allLogos = [...logos, ...logos];
 
     useEffect(() => {
         const track = trackRef.current;
         if (!track) return;
 
-        // Horizontal infinite scroll
         const scrollTween = gsap.to(track, {
             xPercent: -50,
             duration: 25,
@@ -36,16 +47,13 @@ export default function LogoScroller() {
             repeat: -1,
         });
 
-        // Depth effect - each logo zooms in when entering, zooms out when leaving
-        // Small at edges → Large at center → Small at edges
         const updateDepth = () => {
             const centerX = window.innerWidth / 2;
             const maxDistance = window.innerWidth / 2;
 
-            // Settings - increased zoom effect
-            const minScale = 0.5;  // Scale at edges (smaller)
-            const maxScale = 1.15; // Scale at center (larger)
-            const minOpacity = 0.1; // Opacity at edges
+            const minScale = 0.5;
+            const maxScale = 1.15;
+            const minOpacity = 0.1;
 
             logoRefs.current.forEach((logo) => {
                 if (!logo) return;
@@ -54,16 +62,12 @@ export default function LogoScroller() {
                 const logoCenter = rect.left + rect.width / 2;
                 const distance = Math.abs(centerX - logoCenter);
 
-                // t = 0 at center, t = 1 at edges
                 const t = Math.min(distance / maxDistance, 1);
 
-                // Smooth easing for natural zoom effect
                 const easedT = t * t;
 
-                // Scale: 1.15 at center → 0.5 at edges (bigger zoom effect)
                 const scale = maxScale - easedT * (maxScale - minScale);
 
-                // Opacity: 1.0 at center → 0.1 at edges
                 const opacity = 1 - easedT * (1 - minOpacity);
 
                 gsap.to(logo, {
@@ -86,11 +90,9 @@ export default function LogoScroller() {
 
     return (
         <section className="logo-scroller">
-            {/* Fade overlays - positioned absolutely, don't wrap content */}
             <div className="logo-scroller__fade logo-scroller__fade--left" />
             <div className="logo-scroller__fade logo-scroller__fade--right" />
 
-            {/* Track container - no clipping */}
             <div className="logo-scroller__track-wrapper">
                 <div ref={trackRef} className="logo-scroller__track">
                     {allLogos.map((logo, i) => (

@@ -2,13 +2,6 @@
 
 import { useEffect, useState, useRef, useCallback, useMemo } from "react";
 
-// ============================================
-// CINEMATIC SCROLL INTRO HOOK
-// ============================================
-// Centralized scroll state management for
-// the Adaline.ai-style cinematic intro
-// ============================================
-
 interface CinematicIntroState {
     scrollY: number;
     navbarOpacity: number;
@@ -21,29 +14,17 @@ interface CinematicIntroState {
     isReducedMotion: boolean;
 }
 
-// Cubic ease-out function for premium, soft fades
-// easeOut(t) = 1 - pow(1 - t, 3)
 const easeOutCubic = (t: number): number => {
     const clamped = Math.max(0, Math.min(1, t));
     return 1 - Math.pow(1 - clamped, 3);
 };
 
-// Configuration constants
 const CONFIG = {
-    // Total scroll range for animation
     SCROLL_RANGE: 1200,
-
-    // Navbar fade: 0px → 420px
     NAVBAR_FADE_END: 420,
-
-    // Hero text fade: 0px → 520px
     HERO_FADE_END: 520,
-
-    // Logo fade: 180px → 720px (540px range)
     LOGOS_FADE_START: 180,
     LOGOS_FADE_END: 720,
-
-    // Subtle cinematic depth effects
     SCALE_MULTIPLIER: 0.00012,
     BRIGHTNESS_MULTIPLIER: 0.00022,
 } as const;
@@ -54,7 +35,6 @@ export function useScrollCinematicIntro(totalFrames: number): CinematicIntroStat
     const rafRef = useRef<number | null>(null);
     const lastScrollRef = useRef(0);
 
-    // Check for reduced motion preference
     useEffect(() => {
         const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
         setIsReducedMotion(mediaQuery.matches);
@@ -67,7 +47,6 @@ export function useScrollCinematicIntro(totalFrames: number): CinematicIntroStat
         return () => mediaQuery.removeEventListener("change", handleChange);
     }, []);
 
-    // Scroll handler with RAF throttling for 60fps
     useEffect(() => {
         if (isReducedMotion) return;
 
@@ -78,7 +57,6 @@ export function useScrollCinematicIntro(totalFrames: number): CinematicIntroStat
                 rafRef.current = requestAnimationFrame(() => {
                     const currentScroll = window.scrollY;
 
-                    // Only update state if scroll changed significantly
                     if (Math.abs(currentScroll - lastScrollRef.current) > 0.5) {
                         lastScrollRef.current = currentScroll;
                         setScrollY(currentScroll);
@@ -90,7 +68,6 @@ export function useScrollCinematicIntro(totalFrames: number): CinematicIntroStat
             }
         };
 
-        // Initial call
         handleScroll();
 
         window.addEventListener("scroll", handleScroll, { passive: true });
@@ -103,7 +80,6 @@ export function useScrollCinematicIntro(totalFrames: number): CinematicIntroStat
         };
     }, [isReducedMotion]);
 
-    // Memoized calculations for performance
     const cinematicState = useMemo((): CinematicIntroState => {
         const {
             SCROLL_RANGE,
@@ -115,7 +91,6 @@ export function useScrollCinematicIntro(totalFrames: number): CinematicIntroStat
             BRIGHTNESS_MULTIPLIER
         } = CONFIG;
 
-        // Handle reduced motion - skip to end state
         if (isReducedMotion) {
             return {
                 scrollY: 0,
@@ -133,28 +108,23 @@ export function useScrollCinematicIntro(totalFrames: number): CinematicIntroStat
         const clampedScroll = Math.min(scrollY, SCROLL_RANGE);
         const isComplete = scrollY > SCROLL_RANGE;
 
-        // Navbar opacity: 0px → 420px with easeOut
         const navbarProgress = scrollY / NAVBAR_FADE_END;
         const navbarOpacity = isComplete ? 0 : Math.max(0, 1 - easeOutCubic(navbarProgress));
 
-        // Hero text opacity: 0px → 520px with easeOut
         const heroProgress = scrollY / HERO_FADE_END;
         const heroOpacity = isComplete ? 0 : Math.max(0, 1 - easeOutCubic(heroProgress));
 
-        // Logos opacity: 180px → 720px with easeOut (delayed start)
         const logosRange = LOGOS_FADE_END - LOGOS_FADE_START;
         const logosProgress = scrollY <= LOGOS_FADE_START
             ? 0
             : (scrollY - LOGOS_FADE_START) / logosRange;
         const logosOpacity = isComplete ? 0 : Math.max(0, 1 - easeOutCubic(logosProgress));
 
-        // Frame index calculation
         const frameProgress = clampedScroll / SCROLL_RANGE;
         const frameIndex = isComplete
             ? totalFrames - 1
             : Math.min(Math.floor(frameProgress * (totalFrames - 1)), totalFrames - 1);
 
-        // Subtle cinematic depth effects (barely noticeable)
         const scale = 1 + clampedScroll * SCALE_MULTIPLIER;
         const brightness = Math.max(0.7, 1 - clampedScroll * BRIGHTNESS_MULTIPLIER);
 
@@ -174,7 +144,6 @@ export function useScrollCinematicIntro(totalFrames: number): CinematicIntroStat
     return cinematicState;
 }
 
-// Export configuration for external use
 export const CINEMATIC_CONFIG = CONFIG;
 
 export default useScrollCinematicIntro;

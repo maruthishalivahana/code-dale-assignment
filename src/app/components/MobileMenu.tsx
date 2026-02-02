@@ -35,7 +35,6 @@ const productItems = [
     }
 ]
 
-// Polygon graphic for Iterate (no plus)
 const IterateGraphicMobile = ({ isAnimating }: { isAnimating: boolean }) => (
     <div
         className="w-12 h-12"
@@ -60,7 +59,6 @@ const IterateGraphicMobile = ({ isAnimating }: { isAnimating: boolean }) => (
     </div>
 )
 
-// Dashed circle graphic for Evaluate (no plus)
 const EvaluateGraphicMobile = ({ isAnimating }: { isAnimating: boolean }) => (
     <div
         className="w-12 h-12"
@@ -82,7 +80,6 @@ const EvaluateGraphicMobile = ({ isAnimating }: { isAnimating: boolean }) => (
     </div>
 )
 
-// Star burst graphic for Deploy (no plus)
 const DeployGraphicMobile = ({ isAnimating }: { isAnimating: boolean }) => (
     <div
         className="w-12 h-12"
@@ -101,7 +98,6 @@ const DeployGraphicMobile = ({ isAnimating }: { isAnimating: boolean }) => (
     </div>
 )
 
-// Concentric circle graphic for Monitor (no plus)
 const MonitorGraphicMobile = ({ isAnimating }: { isAnimating: boolean }) => (
     <div
         className="w-12 h-12"
@@ -131,7 +127,6 @@ const MonitorGraphicMobile = ({ isAnimating }: { isAnimating: boolean }) => (
     </div>
 )
 
-// Render graphic by type
 const MobileGraphic = ({ type, isAnimating }: { type: string; isAnimating: boolean }) => {
     switch (type) {
         case 'iterate':
@@ -170,7 +165,6 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 
     return (
         <>
-            {/* CSS Keyframes - Premium Adaline-style transitions */}
             <style jsx global>{`
                 @keyframes spin {
                     from { transform: rotate(0deg); }
@@ -222,7 +216,6 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                 }
             `}</style>
 
-            {/* Backdrop overlay */}
             <div
                 className="fixed inset-0 bg-black/20 z-[199] xl:hidden"
                 onClick={handleClose}
@@ -241,7 +234,6 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                         : 'mobileMenuSlideDown 500ms cubic-bezier(0.16, 1, 0.3, 1)',
                 }}
             >
-                {/* Header */}
                 <div className="h-[70px] border-b border-neutral-200/50 flex items-center justify-between px-5 md:px-8">
                     <div className="flex items-center">
                         <img
@@ -265,7 +257,6 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                     </div>
                 </div>
 
-                {/* Menu Content with staggered fade */}
                 <div
                     className="px-4 md:px-6 lg:px-10 py-4 md:py-6 max-h-[calc(100vh-120px)] overflow-y-auto"
                     style={{
@@ -274,7 +265,6 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                             : 'contentFadeIn 550ms cubic-bezier(0.16, 1, 0.3, 1) 120ms both',
                     }}
                 >
-                    {/* Products Section */}
                     <div className="mb-4 md:mb-6 max-w-3xl mx-auto">
                         <h2 className="text-[22px] font-sans font-medium text-[#203b14] mb-0.5">
                             Products
@@ -307,15 +297,12 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                         </div>
                     </div>
 
-                    {/* Other Menu Items */}
-                    <div className="flex flex-col gap-3 pt-3 md:pt-4 border-t border-neutral-200/50 max-w-3xl mx-auto">
-                        <a href="#pricing" className="text-[18px] font-sans font-medium text-[#203b14] py-1 hover:text-[#203b14]/70 transition-colors">
-                            Pricing
-                        </a>
-                        <a href="#blog" className="text-[18px] font-sans font-medium text-[#203b14] py-1 hover:text-[#203b14]/70 transition-colors">
-                            Blog
-                        </a>
-                    </div>
+                    <a href="#pricing" className="text-[18px] font-sans font-medium text-[#203b14] py-1 hover:text-[#203b14]/70 transition-colors">
+                        Pricing
+                    </a>
+                    <a href="#blog" className="text-[18px] font-sans font-medium text-[#203b14] py-1 hover:text-[#203b14]/70 transition-colors">
+                        Blog
+                    </a>
                 </div>
             </div>
         </>

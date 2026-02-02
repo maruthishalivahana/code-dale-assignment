@@ -11,7 +11,6 @@ export interface PillarWithProducts {
     products: ProductMenuItem[]
 }
 
-// Pillars with their associated products
 export const pillarsWithProducts: PillarWithProducts[] = [
     {
         pillar: {
@@ -69,7 +68,6 @@ export const pillarsWithProducts: PillarWithProducts[] = [
     },
 ]
 
-// Flat lists for mobile menu
 export const pillarItems: ProductMenuItem[] = pillarsWithProducts.map(p => p.pillar)
 
 export const specificProducts: ProductMenuItem[] = [

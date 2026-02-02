@@ -53,7 +53,6 @@ const menuData = [
     }
 ];
 
-// Size scale system
 const SIZES = {
     small: 22,
     medium: 28,
@@ -61,7 +60,6 @@ const SIZES = {
     xl: 72,
 };
 
-// Unified CircleWithPlus component
 const CircleWithPlus = ({
     size,
     dashed = false,
@@ -121,7 +119,6 @@ const CircleWithPlus = ({
     </div>
 );
 
-// Double polygon with plus and inner random polygon - reusable component
 const DoublePolygonWithPlus = ({
     size,
     className = "",
@@ -171,21 +168,18 @@ const DoublePolygonWithPlus = ({
                 fill="none"
                 className="absolute inset-0"
             >
-                {/* Outer polygon - irregular octagon */}
                 <polygon
                     points="50,3 83,18 97,50 82,83 50,97 17,82 3,50 18,17"
                     stroke="#203b14"
                     strokeWidth="2"
                     fill="none"
                 />
-                {/* Inner polygon - slightly offset, imperfect */}
                 <polygon
                     points="50,8 78,22 91,50 77,78 50,92 22,77 9,50 23,23"
                     stroke="#203b14"
                     strokeWidth="1.2"
                     fill="none"
                 />
-                {/* Plus sign - smaller, lighter */}
                 <line x1="50" y1="38" x2="50" y2="62" stroke="#203b14" strokeWidth="1.6" strokeLinecap="round" />
                 <line x1="38" y1="50" x2="62" y2="50" stroke="#203b14" strokeWidth="1.6" strokeLinecap="round" />
             </svg>
@@ -193,7 +187,6 @@ const DoublePolygonWithPlus = ({
     );
 };
 
-// Dashed circle with centered plus - for EVALUATE
 const DashedCircleWithPlus = ({
     size,
     strokeOpacity = 0.7,
@@ -232,7 +225,6 @@ const DashedCircleWithPlus = ({
             style={{ width: size, height: size, transitionDuration: speed, transform: `${style?.transform || ''} rotate(${rotation}deg)`.trim() }}
         >
             <svg width={size} height={size} viewBox="0 0 100 100">
-                {/* Dashed circle */}
                 <circle
                     cx="50"
                     cy="50"
@@ -243,7 +235,6 @@ const DashedCircleWithPlus = ({
                     strokeDasharray="6 6"
                     strokeOpacity={strokeOpacity}
                 />
-                {/* Centered small plus */}
                 <line
                     x1="50"
                     y1={50 - 50 * plusScale}
@@ -267,10 +258,8 @@ const DashedCircleWithPlus = ({
     );
 };
 
-// Decorative graphics for each column type
 const IterateGraphics = ({ isActive = false }: { isActive?: boolean }) => (
     <div className="relative w-[180px] h-[160px] mx-auto">
-        {/* Big bottom-right polygon */}
         <DoublePolygonWithPlus
             size={110}
             className="left-[78px] top-[62px] z-10"
@@ -281,7 +270,6 @@ const IterateGraphics = ({ isActive = false }: { isActive?: boolean }) => (
             isActive={isActive}
         />
 
-        {/* Large top-left polygon */}
         <DoublePolygonWithPlus
             size={92}
             className="left-[16px] top-[10px] z-20"
@@ -292,7 +280,6 @@ const IterateGraphics = ({ isActive = false }: { isActive?: boolean }) => (
             isActive={isActive}
         />
 
-        {/* Medium bottom-left polygon */}
         <DoublePolygonWithPlus
             size={76}
             className="left-[0px] top-[78px] z-30"
@@ -303,7 +290,6 @@ const IterateGraphics = ({ isActive = false }: { isActive?: boolean }) => (
             isActive={isActive}
         />
 
-        {/* Small top-right polygon */}
         <DoublePolygonWithPlus
             size={46}
             className="left-[122px] top-[2px] z-40"
@@ -318,7 +304,6 @@ const IterateGraphics = ({ isActive = false }: { isActive?: boolean }) => (
 
 const EvaluateGraphics = ({ isActive = false }: { isActive?: boolean }) => (
     <div className="relative w-[170px] h-[150px] mx-auto">
-        {/* Large top circle */}
         <DashedCircleWithPlus
             size={92}
             className="left-[38px] top-[0px]"
@@ -327,7 +312,6 @@ const EvaluateGraphics = ({ isActive = false }: { isActive?: boolean }) => (
             isActive={isActive}
         />
 
-        {/* Medium bottom-left circle */}
         <DashedCircleWithPlus
             size={78}
             className="left-[0px] top-[70px]"
@@ -336,7 +320,6 @@ const EvaluateGraphics = ({ isActive = false }: { isActive?: boolean }) => (
             isActive={isActive}
         />
 
-        {/* Medium bottom-right circle */}
         <DashedCircleWithPlus
             size={82}
             className="left-[80px] top-[75px]"
@@ -345,7 +328,6 @@ const EvaluateGraphics = ({ isActive = false }: { isActive?: boolean }) => (
             isActive={isActive}
         />
 
-        {/* Small top-right circle */}
         <DashedCircleWithPlus
             size={46}
             className="left-[120px] top-[18px]"
@@ -356,7 +338,6 @@ const EvaluateGraphics = ({ isActive = false }: { isActive?: boolean }) => (
     </div>
 );
 
-// Star burst shape with plus - for DEPLOY (using svgexport-32 path)
 const StarBurstWithPlus = ({
     size,
     className = "",
@@ -389,7 +370,6 @@ const StarBurstWithPlus = ({
             style={{ width: size, height: size, transitionDuration: speed, transform: `rotate(${rotation}deg)` }}
         >
             <svg width={size} height={size} viewBox="0 0 64 64">
-                {/* Star burst path from svgexport-32.svg */}
                 <path
                     fill="none"
                     stroke="#203b14"
@@ -397,7 +377,6 @@ const StarBurstWithPlus = ({
                     strokeWidth="1.2"
                     d="M30.803 8.03c-7.956.39-14.893 4.654-18.965 10.946L19.53 24.8l-8.893-3.75A23.9 23.9 0 0 0 8 32c0 3.945.952 7.667 2.638 10.95l8.892-3.75-7.691 5.825c4.072 6.291 11.01 10.555 18.964 10.946L32 46.4l1.198 9.57c7.954-.392 14.89-4.656 18.963-10.947l-7.69-5.823 8.89 3.749A23.9 23.9 0 0 0 56 32c0-3.944-.951-7.666-2.637-10.948L44.472 24.8l7.69-5.824C48.092 12.685 41.155 8.42 33.2 8.029l-1.198 9.572z"
                 />
-                {/* Small centered plus */}
                 <line x1="32" y1="26" x2="32" y2="38" stroke="#203b14" strokeOpacity="0.7" strokeWidth="1.2" strokeLinecap="round" />
                 <line x1="26" y1="32" x2="38" y2="32" stroke="#203b14" strokeOpacity="0.7" strokeWidth="1.2" strokeLinecap="round" />
             </svg>
@@ -407,21 +386,13 @@ const StarBurstWithPlus = ({
 
 const DeployGraphics = ({ isActive = false }: { isActive?: boolean }) => (
     <div className="relative w-[170px] h-[150px] mx-auto">
-        {/* Large bottom-left */}
         <StarBurstWithPlus size={110} className="left-[0px] top-[55px]" baseRotationDuration={1600} isActive={isActive} />
-
-        {/* Medium top-right */}
         <StarBurstWithPlus size={88} className="left-[85px] top-[10px]" baseRotationDuration={1200} isActive={isActive} />
-
-        {/* Small bottom-right */}
         <StarBurstWithPlus size={46} className="left-[110px] top-[95px]" baseRotationDuration={800} isActive={isActive} />
-
-        {/* Small near badge */}
         <StarBurstWithPlus size={42} className="left-[50px] top-[0px]" baseRotationDuration={900} isActive={isActive} />
     </div>
 );
 
-// Concentric circle with dashed outer ring - for MONITOR
 const ConcentricCircle = ({
     size,
     dashed = true,
@@ -456,7 +427,6 @@ const ConcentricCircle = ({
             style={{ width: size, height: size, transitionDuration: speed, transform: `rotate(${rotation}deg)` }}
         >
             <svg width={size} height={size} viewBox="0 0 100 100">
-                {/* Outer ring */}
                 <circle
                     cx="50"
                     cy="50"
@@ -466,7 +436,6 @@ const ConcentricCircle = ({
                     strokeWidth="1.6"
                     strokeDasharray={dashed ? "6 6" : "0"}
                 />
-                {/* Inner solid circle */}
                 <circle
                     cx="50"
                     cy="50"
@@ -475,7 +444,6 @@ const ConcentricCircle = ({
                     stroke="#203b14"
                     strokeWidth="1.8"
                 />
-                {/* Small centered plus */}
                 <line x1="50" y1="40" x2="50" y2="60" stroke="#203b14" strokeWidth="1.6" strokeLinecap="round" />
                 <line x1="40" y1="50" x2="60" y2="50" stroke="#203b14" strokeWidth="1.6" strokeLinecap="round" />
             </svg>
@@ -485,21 +453,13 @@ const ConcentricCircle = ({
 
 const MonitorGraphics = ({ isActive = false }: { isActive?: boolean }) => (
     <div className="relative w-[200px] h-[150px] mx-auto">
-        {/* Large left */}
         <ConcentricCircle size={100} className="left-[0px] top-[25px]" baseRotationDuration={1800} isActive={isActive} />
-
-        {/* Medium top-right */}
         <ConcentricCircle size={70} className="left-[115px] top-[40px]" baseRotationDuration={1300} isActive={isActive} />
-
-        {/* Small bottom-center */}
         <ConcentricCircle size={50} className="left-[75px] top-[100px]" baseRotationDuration={900} isActive={isActive} />
-
-        {/* Small near badge */}
         <ConcentricCircle size={45} className="left-[105px] top-[0px]" baseRotationDuration={1000} isActive={isActive} />
     </div>
 );
 
-// Graphics component selector
 const DecorativeGraphics = ({ columnId, isActive = false }: { columnId: number; isActive?: boolean }) => {
     switch (columnId) {
         case 1: return <IterateGraphics isActive={isActive} />;
@@ -515,7 +475,6 @@ export default function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
     const [isVisible, setIsVisible] = useState(false);
     const menuRef = useRef<HTMLDivElement>(null);
 
-    // Handle visibility with delay for smooth animation
     useEffect(() => {
         if (isOpen) {
             setIsVisible(true);
@@ -525,7 +484,6 @@ export default function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
         }
     }, [isOpen]);
 
-    // Handle ESC key to close
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
             if (e.key === "Escape" && isOpen && onClose) {
@@ -554,7 +512,6 @@ export default function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                 pointerEvents: isOpen ? 'auto' : 'none',
             }}
         >
-            {/* Background with shadow */}
             <div
                 className="bg-white"
                 style={{
@@ -562,7 +519,6 @@ export default function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                 }}
             >
                 <div className="w-full px-16 xl:px-24 py-10">
-                    {/* Graphics Row with Labels */}
                     <div className="grid grid-cols-4 gap-x-16">
                         {menuData.map((column, columnIndex) => (
                             <div
@@ -582,16 +538,13 @@ export default function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                                     transition: `opacity 400ms ease ${columnIndex * 80 + 100}ms, transform 450ms cubic-bezier(0.22, 1, 0.36, 1) ${columnIndex * 80 + 100}ms`,
                                 }}
                             >
-                                {/* Graphics with Number Badge and Label aligned to right */}
                                 <div className="flex items-end gap-3">
-                                    {/* Decorative Graphics */}
                                     <div className="relative h-32 lg:h-36 flex-1">
                                         <div className="relative w-full h-full">
                                             <DecorativeGraphics columnId={column.id} isActive={hoveredColumn === column.id} />
                                         </div>
                                     </div>
 
-                                    {/* Number Badge + Label (vertical stack, aligned right) */}
                                     <div className="flex items-center gap-2 pb-2">
                                         <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 transition-colors duration-200 ${hoveredColumn === column.id ? 'bg-[#203b14]' : 'bg-[#c8d5a0]'}`}>
                                             <span className={`text-xs font-bold transition-colors duration-200 ${hoveredColumn === column.id ? 'text-white' : 'text-[#203b14]'}`}>{column.id}</span>
@@ -605,10 +558,8 @@ export default function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                         ))}
                     </div>
 
-                    {/* Dotted Separator Line */}
                     <div className="border-t border-dashed border-[#203b14]/20 my-8" />
 
-                    {/* Text Content Row */}
                     <div className="grid grid-cols-4 gap-x-16">
                         {menuData.map((column, columnIndex) => (
                             <div
@@ -629,12 +580,10 @@ export default function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                                     transition: `opacity 400ms ease ${columnIndex * 80 + 200}ms, transform 450ms cubic-bezier(0.22, 1, 0.36, 1) ${columnIndex * 80 + 200}ms`,
                                 }}
                             >
-                                {/* Label */}
                                 <div className="text-[11px] font-mono uppercase tracking-[0.15em] text-[#203b14]/70 mb-3">
                                     {column.label}
                                 </div>
 
-                                {/* Heading */}
                                 <h3
                                     className="text-xl lg:text-2xl xl:text-[26px] font-medium text-[#203b14] leading-[1.2] mb-5 font-sans transition-colors duration-200"
                                     style={{
@@ -646,7 +595,6 @@ export default function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                                     {column.heading.split(' ').slice(2).join(' ')}
                                 </h3>
 
-                                {/* Links */}
                                 <div className="space-y-1.5">
                                     {column.links.map((link, idx) => (
                                         <a

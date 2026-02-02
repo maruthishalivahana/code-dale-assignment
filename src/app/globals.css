@@ -2,16 +2,7 @@
 
 :root {
   --background: #f2ebe1;
-  /* --foreground: #171717; */
 }
-
-
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-} */
 
 body {
   background: var(--background);
@@ -27,9 +18,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ============================================ */
-/* CINEMATIC CANVAS GPU OPTIMIZATION */
-/* ============================================ */
 .cinematic-canvas {
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
@@ -38,12 +26,10 @@ body {
   image-rendering: crisp-edges;
 }
 
-/* Prevent any background-attachment: fixed usage */
 .bg-fixed {
   background-attachment: scroll !important;
 }
 
-/* Akkurat */
 @font-face {
   font-family: "Akkurat";
   src: url("/fonts/akkurat/Akkurat-Regular.woff2") format("woff2");
@@ -51,14 +37,6 @@ body {
   font-style: normal;
   font-display: swap;
 }
-
-/* @font-face {
-  font-family: "Akkurat";
-  src: url("/fonts/akkurat/Akkurat-Bold.woff2") format("woff2");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-} */
 
 @font-face {
   font-family: "Akkurat";
@@ -68,7 +46,6 @@ body {
   font-display: swap;
 }
 
-/* Fragment Mono */
 @font-face {
   font-family: "Fragment Mono";
   src: url("/fonts/fregmentmono/FragmentMono-Regular.woff2") format("woff2");
@@ -76,26 +53,20 @@ body {
   font-style: normal;
   font-display: swap;
 }
-/* @font-face {
-  font-family: "Fragment Mono";
-  src: url("/fonts/fregmentmono/FragmentMono-Bold.woff2") format("woff2");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-} */
+
 @font-face {
   font-family: "Fragment Mono";
   src: url("/fonts/fregmentmono/FragmentMono-Italic.woff2") format("woff2");
   font-weight: 400;
   font-style: italic;   
   font-display: swap;
-} 
+}
+
 @theme {
   --font-sans: "Akkurat", sans-serif;
   --font-mono: "Fragment Mono", monospace;
 }
 
-/* Custom Animations for Navbar */
 @keyframes dropdown-in {
   from {
     opacity: 0;
@@ -242,7 +213,6 @@ body {
   animation: circle-pulse 600ms ease-in-out;
 }
 
-/* Stagger delays for product items */
 .stagger-1 { animation-delay: 50ms; }
 .stagger-2 { animation-delay: 100ms; }
 .stagger-3 { animation-delay: 150ms; }
@@ -252,11 +222,6 @@ body {
 .stagger-7 { animation-delay: 350ms; }
 .stagger-8 { animation-delay: 400ms; }
 
-/* ========================================
-   Cinematic Background Animation Styles
-   ======================================== */
-
-/* GPU acceleration for background layer */
 .cinematic-bg {
   will-change: transform, filter, background-image;
   backface-visibility: hidden;
@@ -264,23 +229,19 @@ body {
   -webkit-transform: translateZ(0);
 }
 
-/* Smooth transitions for navbar fade */
 .navbar-fade {
   will-change: opacity, transform;
   backface-visibility: hidden;
 }
 
-/* Logo scroller fade optimization */
 .logo-scroller-fade {
   will-change: opacity;
 }
 
-/* Prevent layout shifts during animation */
 .scroll-lock-during-intro {
   overflow-anchor: none;
 }
 
-/* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -302,22 +263,14 @@ body {
   }
 }
 
-/* ============================================
-   LOGO SCROLLER - ADALINE STYLE WITH GSAP
-   Premium depth effect: logos scale, fade & dim
-   based on distance from viewport center
-   ============================================ */
-
 .logo-scroller {
   position: relative;
   padding: 2rem 0;
   background: transparent;
   max-width: 600px;
   margin: 0 auto;
-  /* NO overflow:hidden here - let scaled logos breathe */
 }
 
-/* Fade overlays - absolute positioned, don't clip content */
 .logo-scroller__fade {
   position: absolute;
   top: 0;
@@ -337,11 +290,8 @@ body {
   background: transparent;
 }
 
-/* Track wrapper - clips horizontal overflow only */
 .logo-scroller__track-wrapper {
-  /* overflow-x: clip;
-  overflow-y: visible; */
-  padding: 20px 0; /* Vertical padding for scaled logos */
+  padding: 20px 0;
 }
 
 .logo-scroller__track {
@@ -352,21 +302,16 @@ body {
   overflow: visible;
 }
 
-/* GPU-accelerated logo items with NO clipping */
 .logo-item {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
   overflow: visible;
-  
-  /* GPU compositing layer */
   will-change: transform, opacity, filter;
   transform: translateZ(0);
   backface-visibility: hidden;
   perspective: 1000px;
-  
-  /* No CSS transitions - GSAP controls everything */
   transition: none;
 }
 
@@ -377,22 +322,12 @@ body {
   pointer-events: none;
   user-select: none;
   overflow: visible;
-  
-  /* Green color filter - matching #0a1d08 dark green */
   filter: brightness(0) saturate(100%) invert(8%) sepia(20%) saturate(2000%) hue-rotate(70deg) brightness(95%) contrast(95%);
-  
-  /* Prevent subpixel jitter during scaling */
   transform-origin: center center;
   image-rendering: optimizeQuality;
   shape-rendering: geometricPrecision;
-  
-  /* No transitions - GSAP only */
   transition: none;
 }
-
-/* ============================================
-   LOGO SCROLLER - RESPONSIVE
-   ============================================ */
 
 @media (max-width: 1024px) {
   .logo-scroller__track {

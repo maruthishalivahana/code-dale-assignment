@@ -4,14 +4,6 @@ import { useRef } from "react";
 import { useScroll, useTransform, useSpring, motion } from "framer-motion";
 import LogoScroller from "./LogoScroller";
 
-// ============================================
-// HERO SECTION - Framer Motion Scroll Animation
-// ============================================
-// Scroll-driven animations using Framer Motion:
-// - Content fades and scales out as user scrolls
-// - Smooth spring-based progress tracking
-// ============================================
-
 export default function HeroSection() {
     const containerRef = useRef<HTMLDivElement>(null);
 
@@ -26,7 +18,6 @@ export default function HeroSection() {
         restDelta: 0.001
     });
 
-    // --- HEADING BLOCK DEPARTURE ANIMATIONS ---
     const contentOpacity = useTransform(smoothProgress, [0, 0.3], [1, 0]);
     const contentScale = useTransform(smoothProgress, [0, 0.3], [1, 0.8]);
 
@@ -47,7 +38,7 @@ export default function HeroSection() {
 
                 <div className="max-w-full md:w-full">
                     <div className="flex flex-col items-center overflow-clip">
-                        <p className="text-[#4a7c59] mb-2 text-[14px] leading-none uppercase tracking-wider">
+                        <p className="text-[#e1eae4] mb-2 text-[14px] leading-none uppercase tracking-wider">
                             TRUSTED BY
                         </p>
                         <LogoScroller />
